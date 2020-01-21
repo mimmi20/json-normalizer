@@ -1,0 +1,11 @@
+*~
+.settings
+.buildpath
+.project
+.idea/
+vendor/
+composer.phar
+composer.lock
+.php_cs.cache
+infection-*.log
+clover.xml

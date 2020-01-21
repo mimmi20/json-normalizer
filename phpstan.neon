@@ -1,0 +1,30 @@
+parameters:
+  level: max
+  paths:
+    - src
+    - tests
+  autoload_files:
+    - %currentWorkingDirectory%/vendor/autoload.php
+    - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
+    - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/src/Util/Tokens.php
+  excludes_analyse:
+    - */tests/*/data/*
+  ignoreErrors:
+    - '~has parameter .* with default value~'
+    - '~has parameter .* with null as default value~'
+    - '~has parameter .* with a nullable type declaration~'
+    - '~PHPDoc tag @throws with type .* is not compatible with parent~'
+  exceptionRules:
+    reportUnusedCatchesOfUncheckedExceptions: false
+    uncheckedExceptions: []
+  ergebnis:
+    classesAllowedToBeExtended:
+      - UnexpectedValueException
+
+includes:
+  - vendor/phpstan/phpstan-strict-rules/rules.neon
+  - vendor/phpstan/phpstan-phpunit/extension.neon
+  - vendor/phpstan/phpstan-phpunit/rules.neon
+  - vendor/pepakriz/phpstan-exception-rules/extension.neon
+  - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+  - vendor/ergebnis/phpstan-rules/rules.neon
