@@ -23,11 +23,6 @@ final class FormatNormalizer implements NormalizerInterface
     private const PLACE_HOLDER = '$ni$';
 
     /**
-     * @var NormalizerInterface|null
-     */
-    private $normalizer;
-
-    /**
      * @var Format
      */
     private $format;
@@ -38,17 +33,13 @@ final class FormatNormalizer implements NormalizerInterface
     private $jsonClass;
 
     /**
-     * @param Format                   $format
-     * @param NormalizerInterface|null $normalizer
+     * @param Format $format
      *
      * @throws \UnexpectedValueException
      */
-    public function __construct(
-        Format $format,
-        ?NormalizerInterface $normalizer = null
-    ) {
-        $this->format     = $format;
-        $this->normalizer = $normalizer;
+    public function __construct(Format $format)
+    {
+        $this->format = $format;
 
         $this->checkPrettyPrint();
 
@@ -71,40 +62,30 @@ final class FormatNormalizer implements NormalizerInterface
      */
     public function normalize(Json $json): Json
     {
-        if (null !== $this->normalizer) {
-            $json = $this->normalizer->normalize($json);
-        }
-
-        $jsonOptions = $this->format->jsonEncodeOptions()->value();
-        $prettyPrint = (bool) ($jsonOptions & JSON_PRETTY_PRINT);
-
-        if (!$prettyPrint) {
-            $jsonOptions |= JSON_PRETTY_PRINT;
-        }
-
         $encodedWithJsonEncodeOptions = $this->jsonClass->encode(
             $json->decoded(),
-            $jsonOptions
+            $this->format->jsonEncodeOptions()->value()
         );
 
-        $json = Json::fromEncoded($encodedWithJsonEncodeOptions);
-
-        $oldIndent = (string) Indent::fromJson($json);
-        $newIndent = (string) $this->format->indent();
-
+        $json       = Json::fromEncoded($encodedWithJsonEncodeOptions);
         $oldNewline = (string) NewLine::fromJson($json);
-        $newNewline = (string) $this->format->newLine();
 
-        $lines = explode($oldNewline, $json->encoded());
+        assert('' !== $oldNewline);
 
-        if (false === $lines) {
-            return clone $json;
-        }
+        $lines = explode(
+            $oldNewline,
+            rtrim($json->encoded())
+        );
 
+        assert(is_array($lines));
+
+        $newNewline     = (string) $this->format->newLine();
+        $oldIndent      = (string) Indent::fromJson($json);
+        $newIndent      = (string) $this->format->indent();
         $formattedLines = [];
 
         foreach ($lines as $line) {
-            if (1 > preg_match('/^(\s*)(\S.*)/', $line, $matches)) {
+            if (1 > preg_match('/^(\s+)(\S.*)/', $line, $matches)) {
                 $formattedLines[] = $line;
                 continue;
             }
