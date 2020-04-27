@@ -70,6 +70,7 @@ final class FormatNormalizer implements NormalizerInterface
         $json       = Json::fromEncoded($encodedWithJsonEncodeOptions);
         $oldNewline = (string) NewLine::fromJson($json);
 
+        assert(is_string($oldNewline));
         assert('' !== $oldNewline);
 
         $lines = explode(
@@ -79,18 +80,36 @@ final class FormatNormalizer implements NormalizerInterface
 
         assert(is_array($lines));
 
-        $newNewline     = (string) $this->format->newLine();
-        $oldIndent      = (string) Indent::fromJson($json);
-        $newIndent      = (string) $this->format->indent();
+        $newNewline = (string) $this->format->newLine();
+        assert(is_string($newNewline));
+
+        $oldIndent = (string) Indent::fromJson($json);
+        assert(is_string($oldIndent));
+
+        $newIndent = (string) $this->format->indent();
+        assert(is_string($newIndent));
+
         $formattedLines = [];
+        $matches        = [];
 
         foreach ($lines as $line) {
-            if (1 > preg_match('/^(\s+)(\S.*)/', $line, $matches)) {
+            if (1 > preg_match('/^(?P<ident>\s+)(\S.*)/', $line, $matches)) {
                 $formattedLines[] = $line;
                 continue;
             }
 
-            $tempLine = str_replace([$oldIndent, self::PLACE_HOLDER], [self::PLACE_HOLDER, $newIndent], $matches[1]);
+            assert(array_key_exists('ident', $matches));
+            assert(is_string($matches['ident']));
+
+            $tempLine = str_replace($oldIndent, self::PLACE_HOLDER, $matches['ident']);
+
+            assert(is_string($tempLine));
+            assert(false === mb_strpos($tempLine, $oldIndent));
+            assert(false !== mb_strpos($tempLine, self::PLACE_HOLDER));
+
+            $tempLine = str_replace(self::PLACE_HOLDER, $newIndent, $tempLine);
+
+            assert(false === mb_strpos($tempLine, self::PLACE_HOLDER));
 
             $formattedLines[] = $tempLine . $matches[2];
         }
@@ -113,6 +132,7 @@ final class FormatNormalizer implements NormalizerInterface
     {
         $jsonOptions = $this->format->jsonEncodeOptions()->value();
         $prettyPrint = (bool) ($jsonOptions & JSON_PRETTY_PRINT);
+        assert(is_bool($prettyPrint));
 
         if (!$prettyPrint) {
             throw new \UnexpectedValueException('This Normalizer requires the JSON_PRETTY_PRINT option to be set.');
