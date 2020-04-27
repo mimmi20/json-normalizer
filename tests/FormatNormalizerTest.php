@@ -17,6 +17,7 @@ use Ergebnis\Json\Normalizer\Format\JsonEncodeOptions;
 use Ergebnis\Json\Normalizer\Format\NewLine;
 use Ergebnis\Json\Normalizer\Json;
 use Json\Normalizer\FormatNormalizer;
+use JsonClass\JsonInterface;
 use PHPUnit\Framework\TestCase;
 
 final class FormatNormalizerTest extends TestCase
@@ -85,7 +86,7 @@ final class FormatNormalizerTest extends TestCase
         /** @var Format $format */
         $object = new FormatNormalizer($format);
 
-        $jsonClass = $this->getMockBuilder(\JsonClass\JsonInterface::class)
+        $jsonClass = $this->getMockBuilder(JsonInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
         $jsonClass
