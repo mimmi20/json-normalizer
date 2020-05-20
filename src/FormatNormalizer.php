@@ -22,14 +22,10 @@ final class FormatNormalizer implements NormalizerInterface
 {
     private const PLACE_HOLDER = '$ni$';
 
-    /**
-     * @var Format
-     */
+    /** @var Format */
     private $format;
 
-    /**
-     * @var JsonClass
-     */
+    /** @var JsonClass */
     private $jsonClass;
 
     /**
