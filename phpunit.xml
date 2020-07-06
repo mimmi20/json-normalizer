@@ -5,12 +5,18 @@
         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
         backupGlobals="false"
         backupStaticAttributes="false"
+        beStrictAboutChangesToGlobalState="true"
+        beStrictAboutCoversAnnotation="false"
         beStrictAboutOutputDuringTests="true"
         beStrictAboutTestsThatDoNotTestAnything="true"
         beStrictAboutTodoAnnotatedTests="true"
-        verbose="true"
         failOnWarning="true"
+        failOnRisky="true"
+        verbose="false"
         bootstrap="vendor/autoload.php"
+        enforceTimeLimit="false"
+        executionOrder="default"
+        resolveDependencies="true"
         >
     <php>
         <ini name="error_reporting" value="-1"/>
@@ -18,11 +24,9 @@
         <ini name="date.timezone" value="UTC"/>
     </php>
 
-    <testsuites>
-        <testsuite name="Json Normalizer Test Suite">
-            <directory>tests/</directory>
-        </testsuite>
-    </testsuites>
+    <testsuite name="Json Normalizer Test Suite">
+        <directory>tests/</directory>
+    </testsuite>
 
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true" processUncoveredFilesFromWhitelist="true">

@@ -1,9 +1,12 @@
 parameters:
   level: max
+  parallel:
+    maximumNumberOfProcesses: 1
+    processTimeout: 200.0
   paths:
     - src
     - tests
-  autoload_files:
+  scanFiles:
     - %currentWorkingDirectory%/vendor/autoload.php
     - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/autoload.php
     - %currentWorkingDirectory%/vendor/squizlabs/php_codesniffer/src/Util/Tokens.php
@@ -20,11 +23,3 @@ parameters:
   ergebnis:
     classesAllowedToBeExtended:
       - UnexpectedValueException
-
-includes:
-  - vendor/phpstan/phpstan-strict-rules/rules.neon
-  - vendor/phpstan/phpstan-phpunit/extension.neon
-  - vendor/phpstan/phpstan-phpunit/rules.neon
-  - vendor/pepakriz/phpstan-exception-rules/extension.neon
-  - vendor/phpstan/phpstan-deprecation-rules/rules.neon
-  - vendor/ergebnis/phpstan-rules/rules.neon
