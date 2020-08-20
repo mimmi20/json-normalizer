@@ -17,9 +17,6 @@ updates:
       - "dependencies"
     versioning-strategy: increase
     ignore:
-      - dependency-name: ergebnis/composer-normalize
-        versions:
-          - ">= 0"
       - dependency-name: ergebnis/json-normalizer
         versions:
           - ">= 0"
