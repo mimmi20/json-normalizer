@@ -14,12 +14,6 @@ parameters:
     - */tests/*/data/*
   ignoreErrors:
     - '~PHPDoc tag @throws with type .* is not compatible with parent~'
-    - '~Call to function assert\(\) with true will always evaluate to true~'
-    - '~Call to function is_string\(\) with string will always evaluate to true~'
-    - '~Call to function is_bool\(\) with bool will always evaluate to true~'
   exceptionRules:
     reportUnusedCatchesOfUncheckedExceptions: false
     uncheckedExceptions: []
-  ergebnis:
-    classesAllowedToBeExtended:
-      - UnexpectedValueException
