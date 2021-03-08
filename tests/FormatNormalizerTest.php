@@ -49,7 +49,7 @@ final class FormatNormalizerTest extends TestCase
     /**
      * @throws \Ergebnis\Json\Normalizer\Exception\InvalidIndentStringException
      * @throws \Ergebnis\Json\Normalizer\Exception\InvalidNewLineStringException
-     * @throws \PHPUnit\Framework\MockObject\RuntimeException
+     * @throws \PHPUnit\Framework\Exception
      * @throws \UnexpectedValueException
      * @throws \ReflectionException
      * @throws \Ergebnis\Json\Normalizer\Exception\InvalidJsonEncodeOptionsException
