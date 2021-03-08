@@ -1,15 +1,15 @@
 # json-normalizer
 An additional normalizer for ergebnis/json-normalizer
 
-[![Continuous Integration](https://github.com/mimmi20/json-normalizer/workflows/Continuous Integration/badge.svg?branch=master)](https://github.com/mimmi20/json-normalizer/actions)
-[![Close stale issues and pull requests](https://github.com/mimmi20/json-normalizer/workflows/Close stale issues and pull requests/badge.svg?branch=master)](https://github.com/mimmi20/json-normalizer/actions)
-[![Release](https://github.com/mimmi20/json-normalizer/workflows/Release/badge.svg?branch=master)](https://github.com/mimmi20/json-normalizer/actions)
-[![Renew License](https://github.com/mimmi20/json-normalizer/workflows/Renew License/badge.svg?branch=master)](https://github.com/mimmi20/json-normalizer/actions)
+[![Latest Stable Version](https://poser.pugx.org/mimmi20/json-normalizer/v/stable?format=flat-square)](https://packagist.org/packages/mimmi20/json-normalizer)
+[![Latest Unstable Version](https://poser.pugx.org/mimmi20/json-normalizer/v/unstable?format=flat-square)](https://packagist.org/packages/mimmi20/json-normalizer)
+[![License](https://poser.pugx.org/mimmi20/json-normalizer/license?format=flat-square)](https://packagist.org/packages/mimmi20/json-normalizer)
 
-[![Code Coverage](https://codecov.io/gh/mimmi20/json-normalizer/branch/master/graph/badge.svg)](https://codecov.io/gh/mimmi20/json-normalizer)
+## Code Status
 
-[![Latest Stable Version](https://poser.pugx.org/mimmi20/json-normalizer/v/stable)](https://packagist.org/packages/mimmi20/json-normalizer)
-[![Total Downloads](https://poser.pugx.org/mimmi20/json-normalizer/downloads)](https://packagist.org/packages/mimmi20/json-normalizer)
+[![codecov](https://codecov.io/gh/mimmi20/json-normalizer/branch/master/graph/badge.svg)](https://codecov.io/gh/mimmi20/json-normalizer)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/mimmi20/json-normalizer.svg)](http://isitmaintained.com/project/mimmi20/json-normalizer "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/mimmi20/json-normalizer.svg)](http://isitmaintained.com/project/mimmi20/json-normalizer "Percentage of issues still open")
 
 ## Installation
 
