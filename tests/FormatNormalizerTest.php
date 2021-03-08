@@ -61,7 +61,6 @@ final class FormatNormalizerTest extends TestCase
      * @throws \Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesDocumentWithInvalidMediaTypeException
      * @throws \Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesInvalidJsonDocumentException
      * @throws \ExceptionalJSON\EncodeErrorException
-     * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
      *
      * @return void
