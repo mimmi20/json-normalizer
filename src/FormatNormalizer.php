@@ -9,29 +9,50 @@
  */
 
 declare(strict_types = 1);
+
 namespace Json\Normalizer;
 
+use Ergebnis\Json\Normalizer\Exception\InvalidJsonEncodedException;
+use Ergebnis\Json\Normalizer\Exception\NormalizedInvalidAccordingToSchemaException;
+use Ergebnis\Json\Normalizer\Exception\OriginalInvalidAccordingToSchemaException;
+use Ergebnis\Json\Normalizer\Exception\SchemaUriCouldNotBeReadException;
+use Ergebnis\Json\Normalizer\Exception\SchemaUriCouldNotBeResolvedException;
+use Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesDocumentWithInvalidMediaTypeException;
+use Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesInvalidJsonDocumentException;
 use Ergebnis\Json\Normalizer\Format\Format;
 use Ergebnis\Json\Normalizer\Format\Indent;
 use Ergebnis\Json\Normalizer\Format\NewLine;
 use Ergebnis\Json\Normalizer\Json;
 use Ergebnis\Json\Normalizer\NormalizerInterface;
+use ExceptionalJSON\EncodeErrorException;
 use JsonClass\Json as JsonClass;
+use JsonClass\JsonInterface;
+use UnexpectedValueException;
+
+use function array_key_exists;
+use function assert;
+use function explode;
+use function implode;
+use function is_array;
+use function is_bool;
+use function is_string;
+use function mb_strpos;
+use function preg_match;
+use function rtrim;
+use function str_replace;
+
+use const JSON_PRETTY_PRINT;
 
 final class FormatNormalizer implements NormalizerInterface
 {
     private const PLACE_HOLDER = '$ni$';
 
-    /** @var Format */
-    private $format;
+    private Format $format;
 
-    /** @var JsonClass */
-    private $jsonClass;
+    private JsonInterface $jsonClass;
 
     /**
-     * @param Format $format
-     *
-     * @throws \UnexpectedValueException
+     * @throws UnexpectedValueException
      */
     public function __construct(Format $format)
     {
@@ -43,18 +64,14 @@ final class FormatNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param Json $json
-     *
-     * @throws \ExceptionalJSON\EncodeErrorException                                                        When the encode operation fails
-     * @throws \Ergebnis\Json\Normalizer\Exception\NormalizedInvalidAccordingToSchemaException
-     * @throws \Ergebnis\Json\Normalizer\Exception\OriginalInvalidAccordingToSchemaException
-     * @throws \Ergebnis\Json\Normalizer\Exception\SchemaUriCouldNotBeReadException
-     * @throws \Ergebnis\Json\Normalizer\Exception\SchemaUriCouldNotBeResolvedException
-     * @throws \Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesDocumentWithInvalidMediaTypeException
-     * @throws \Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesInvalidJsonDocumentException
-     * @throws \Ergebnis\Json\Normalizer\Exception\InvalidJsonEncodedException
-     *
-     * @return Json
+     * @throws EncodeErrorException                                     When the encode operation fails
+     * @throws NormalizedInvalidAccordingToSchemaException
+     * @throws OriginalInvalidAccordingToSchemaException
+     * @throws SchemaUriCouldNotBeReadException
+     * @throws SchemaUriCouldNotBeResolvedException
+     * @throws SchemaUriReferencesDocumentWithInvalidMediaTypeException
+     * @throws SchemaUriReferencesInvalidJsonDocumentException
+     * @throws InvalidJsonEncodedException
      */
     public function normalize(Json $json): Json
     {
@@ -120,9 +137,7 @@ final class FormatNormalizer implements NormalizerInterface
     }
 
     /**
-     * @throws \UnexpectedValueException
-     *
-     * @return void
+     * @throws UnexpectedValueException
      */
     private function checkPrettyPrint(): void
     {
@@ -131,7 +146,7 @@ final class FormatNormalizer implements NormalizerInterface
         assert(is_bool($prettyPrint));
 
         if (!$prettyPrint) {
-            throw new \UnexpectedValueException('This Normalizer requires the JSON_PRETTY_PRINT option to be set.');
+            throw new UnexpectedValueException('This Normalizer requires the JSON_PRETTY_PRINT option to be set.');
         }
     }
 }
