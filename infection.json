@@ -15,6 +15,6 @@
   },
   "mutators": {
     "@default": true,
-    "MBString": true
+    "MBString": false
   }
 }

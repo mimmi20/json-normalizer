@@ -106,7 +106,7 @@ final class FormatNormalizer implements NormalizerInterface
         $matches        = [];
 
         foreach ($lines as $line) {
-            if (1 > preg_match('/^(?P<ident>\s+)(\S.*)/', $line, $matches)) {
+            if (!preg_match('/^(?P<ident>\s+)(\S.*)/', $line, $matches)) {
                 $formattedLines[] = $line;
                 continue;
             }

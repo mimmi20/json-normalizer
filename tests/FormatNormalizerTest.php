@@ -121,4 +121,115 @@ final class FormatNormalizerTest extends TestCase
 
         self::assertSame($expected, $normalized->encoded());
     }
+
+    /**
+     * @throws InvalidIndentStringException
+     * @throws InvalidNewLineStringException
+     * @throws Exception
+     * @throws UnexpectedValueException
+     * @throws ReflectionException
+     * @throws InvalidJsonEncodeOptionsException
+     * @throws InvalidJsonEncodedException
+     * @throws NormalizedInvalidAccordingToSchemaException
+     * @throws OriginalInvalidAccordingToSchemaException
+     * @throws SchemaUriCouldNotBeReadException
+     * @throws SchemaUriCouldNotBeResolvedException
+     * @throws SchemaUriReferencesDocumentWithInvalidMediaTypeException
+     * @throws SchemaUriReferencesInvalidJsonDocumentException
+     * @throws EncodeErrorException
+     * @throws InvalidArgumentException
+     */
+    public function testNormalizeWithPrettyPrint2(): void
+    {
+        $jsonOptions                = JSON_HEX_QUOT | JSON_PRETTY_PRINT;
+        $decodedJson                = new stdClass();
+        $decodedJson->{'Test-Json'} = false;
+        $encodedJson                = '{"Test-Json": false}';
+        $encodedJson2               = "{\n    \"Test-Json\": false\n}\n\n";
+        $expected                   = "{\r\n \"Test-Json\": false\r\n}\r\n";
+
+        $json   = Json::fromEncoded($encodedJson);
+        $format = new Format(
+            JsonEncodeOptions::fromInt($jsonOptions),
+            Indent::fromString(' '),
+            NewLine::fromString("\r\n"),
+            true
+        );
+
+        assert($format instanceof Format);
+        $object = new FormatNormalizer($format);
+
+        $jsonClass = $this->getMockBuilder(JsonInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $jsonClass
+            ->expects(self::once())
+            ->method('encode')
+            ->with($decodedJson, $jsonOptions)
+            ->willReturn($encodedJson2);
+
+        $refProperty = new ReflectionProperty($object, 'jsonClass');
+        $refProperty->setAccessible(true);
+        $refProperty->setValue($object, $jsonClass);
+
+        $normalized = $object->normalize($json);
+
+        self::assertSame($expected, $normalized->encoded());
+    }
+
+    /**
+     * @throws InvalidIndentStringException
+     * @throws InvalidNewLineStringException
+     * @throws Exception
+     * @throws UnexpectedValueException
+     * @throws ReflectionException
+     * @throws InvalidJsonEncodeOptionsException
+     * @throws InvalidJsonEncodedException
+     * @throws NormalizedInvalidAccordingToSchemaException
+     * @throws OriginalInvalidAccordingToSchemaException
+     * @throws SchemaUriCouldNotBeReadException
+     * @throws SchemaUriCouldNotBeResolvedException
+     * @throws SchemaUriReferencesDocumentWithInvalidMediaTypeException
+     * @throws SchemaUriReferencesInvalidJsonDocumentException
+     * @throws EncodeErrorException
+     * @throws InvalidArgumentException
+     */
+    public function testNormalizeWithPrettyPrint3(): void
+    {
+        $jsonOptions                 = JSON_HEX_QUOT | JSON_PRETTY_PRINT;
+        $decodedJson                 = new stdClass();
+        $decodedJson->{'Test-Json'}  = false;
+        $decodedJson->{'Test-Json2'} = '    ';
+        $encodedJson                 = '{"Test-Json": false,"Test-Json2": "    "}';
+        $encodedJson2                = "{\n    \"Test-Json\": false,\n    \"Test-Json2\": \"    \"\n}\n\n";
+        $expected                    = "{\r\n \"Test-Json\": false,\r\n \"Test-Json2\": \"    \"\r\n}\r\n";
+
+        $json   = Json::fromEncoded($encodedJson);
+        $format = new Format(
+            JsonEncodeOptions::fromInt($jsonOptions),
+            Indent::fromString(' '),
+            NewLine::fromString("\r\n"),
+            true
+        );
+
+        assert($format instanceof Format);
+        $object = new FormatNormalizer($format);
+
+        $jsonClass = $this->getMockBuilder(JsonInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $jsonClass
+            ->expects(self::once())
+            ->method('encode')
+            ->with($decodedJson, $jsonOptions)
+            ->willReturn($encodedJson2);
+
+        $refProperty = new ReflectionProperty($object, 'jsonClass');
+        $refProperty->setAccessible(true);
+        $refProperty->setValue($object, $jsonClass);
+
+        $normalized = $object->normalize($json);
+
+        self::assertSame($expected, $normalized->encoded());
+    }
 }
