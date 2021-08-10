@@ -13,17 +13,11 @@ An additional normalizer for ergebnis/json-normalizer
 
 ## Installation
 
-:bulb: This is a great place for showing how to install the package, see below:
-
 Run
 
 ```
 $ composer require mimmi20/json-normalizer
 ```
-
-## Usage
-
-:bulb: This is a great place for showing a few usage examples!
 
 ## License
 
