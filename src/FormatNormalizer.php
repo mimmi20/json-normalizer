@@ -13,12 +13,6 @@ declare(strict_types = 1);
 namespace Json\Normalizer;
 
 use Ergebnis\Json\Normalizer\Exception\InvalidJsonEncodedException;
-use Ergebnis\Json\Normalizer\Exception\NormalizedInvalidAccordingToSchemaException;
-use Ergebnis\Json\Normalizer\Exception\OriginalInvalidAccordingToSchemaException;
-use Ergebnis\Json\Normalizer\Exception\SchemaUriCouldNotBeReadException;
-use Ergebnis\Json\Normalizer\Exception\SchemaUriCouldNotBeResolvedException;
-use Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesDocumentWithInvalidMediaTypeException;
-use Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesInvalidJsonDocumentException;
 use Ergebnis\Json\Normalizer\Format\Format;
 use Ergebnis\Json\Normalizer\Format\Indent;
 use Ergebnis\Json\Normalizer\Format\NewLine;
@@ -67,13 +61,7 @@ final class FormatNormalizer implements NormalizerInterface
     }
 
     /**
-     * @throws EncodeErrorException                                     When the encode operation fails
-     * @throws NormalizedInvalidAccordingToSchemaException
-     * @throws OriginalInvalidAccordingToSchemaException
-     * @throws SchemaUriCouldNotBeReadException
-     * @throws SchemaUriCouldNotBeResolvedException
-     * @throws SchemaUriReferencesDocumentWithInvalidMediaTypeException
-     * @throws SchemaUriReferencesInvalidJsonDocumentException
+     * @throws EncodeErrorException        When the encode operation fails
      * @throws InvalidJsonEncodedException
      */
     public function normalize(Json $json): Json

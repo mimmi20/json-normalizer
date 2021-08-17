@@ -16,12 +16,6 @@ use Ergebnis\Json\Normalizer\Exception\InvalidIndentStringException;
 use Ergebnis\Json\Normalizer\Exception\InvalidJsonEncodedException;
 use Ergebnis\Json\Normalizer\Exception\InvalidJsonEncodeOptionsException;
 use Ergebnis\Json\Normalizer\Exception\InvalidNewLineStringException;
-use Ergebnis\Json\Normalizer\Exception\NormalizedInvalidAccordingToSchemaException;
-use Ergebnis\Json\Normalizer\Exception\OriginalInvalidAccordingToSchemaException;
-use Ergebnis\Json\Normalizer\Exception\SchemaUriCouldNotBeReadException;
-use Ergebnis\Json\Normalizer\Exception\SchemaUriCouldNotBeResolvedException;
-use Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesDocumentWithInvalidMediaTypeException;
-use Ergebnis\Json\Normalizer\Exception\SchemaUriReferencesInvalidJsonDocumentException;
 use Ergebnis\Json\Normalizer\Format\Format;
 use Ergebnis\Json\Normalizer\Format\Indent;
 use Ergebnis\Json\Normalizer\Format\JsonEncodeOptions;
@@ -75,12 +69,6 @@ final class FormatNormalizerTest extends TestCase
      * @throws ReflectionException
      * @throws InvalidJsonEncodeOptionsException
      * @throws InvalidJsonEncodedException
-     * @throws NormalizedInvalidAccordingToSchemaException
-     * @throws OriginalInvalidAccordingToSchemaException
-     * @throws SchemaUriCouldNotBeReadException
-     * @throws SchemaUriCouldNotBeResolvedException
-     * @throws SchemaUriReferencesDocumentWithInvalidMediaTypeException
-     * @throws SchemaUriReferencesInvalidJsonDocumentException
      * @throws EncodeErrorException
      * @throws InvalidArgumentException
      */
@@ -130,12 +118,6 @@ final class FormatNormalizerTest extends TestCase
      * @throws ReflectionException
      * @throws InvalidJsonEncodeOptionsException
      * @throws InvalidJsonEncodedException
-     * @throws NormalizedInvalidAccordingToSchemaException
-     * @throws OriginalInvalidAccordingToSchemaException
-     * @throws SchemaUriCouldNotBeReadException
-     * @throws SchemaUriCouldNotBeResolvedException
-     * @throws SchemaUriReferencesDocumentWithInvalidMediaTypeException
-     * @throws SchemaUriReferencesInvalidJsonDocumentException
      * @throws EncodeErrorException
      * @throws InvalidArgumentException
      */
@@ -185,12 +167,6 @@ final class FormatNormalizerTest extends TestCase
      * @throws ReflectionException
      * @throws InvalidJsonEncodeOptionsException
      * @throws InvalidJsonEncodedException
-     * @throws NormalizedInvalidAccordingToSchemaException
-     * @throws OriginalInvalidAccordingToSchemaException
-     * @throws SchemaUriCouldNotBeReadException
-     * @throws SchemaUriCouldNotBeResolvedException
-     * @throws SchemaUriReferencesDocumentWithInvalidMediaTypeException
-     * @throws SchemaUriReferencesInvalidJsonDocumentException
      * @throws EncodeErrorException
      * @throws InvalidArgumentException
      */
