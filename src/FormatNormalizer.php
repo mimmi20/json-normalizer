@@ -18,7 +18,7 @@ use Ergebnis\Json\Normalizer\Format\Indent;
 use Ergebnis\Json\Normalizer\Format\NewLine;
 use Ergebnis\Json\Normalizer\Json;
 use Ergebnis\Json\Normalizer\NormalizerInterface;
-use ExceptionalJSON\EncodeErrorException;
+use JsonClass\EncodeErrorException;
 use JsonClass\Json as JsonClass;
 use JsonClass\JsonInterface;
 use UnexpectedValueException;
