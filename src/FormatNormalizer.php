@@ -43,6 +43,7 @@ use const JSON_PRETTY_PRINT;
 final class FormatNormalizer implements NormalizerInterface
 {
     private const PLACE_HOLDER = '$ni$';
+    private const IDENT = 'ident';
 
     private Format $format;
 
@@ -102,10 +103,10 @@ final class FormatNormalizer implements NormalizerInterface
                 continue;
             }
 
-            assert(array_key_exists('ident', $matches));
-            assert(is_string($matches['ident']));
+            assert(array_key_exists(self::IDENT, $matches));
+            assert(is_string($matches[self::IDENT]));
 
-            $tempLine = str_replace($oldIndent, self::PLACE_HOLDER, $matches['ident']);
+            $tempLine = str_replace($oldIndent, self::PLACE_HOLDER, $matches[self::IDENT]);
 
             assert(is_string($tempLine));
             assert(false === mb_strpos($tempLine, $oldIndent));
