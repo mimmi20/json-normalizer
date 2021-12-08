@@ -1,7 +1,8 @@
 {
   "name": "mimmi20/json-normalizer",
-  "type": "library",
   "description": "An additional normalizer for ergebnis/json-normalizer",
+  "license": "MIT",
+  "type": "library",
   "keywords": [
     "Browser",
     "user agent",
@@ -9,8 +10,6 @@
     "parser",
     "user-agent"
   ],
-  "homepage": "https://github.com/mimmi20/json-normalizer",
-  "license": "MIT",
   "authors": [
     {
       "name": "Thomas Müller",
@@ -22,6 +21,11 @@
       "homepage": "https://github.com/mimmi20/json-normalizer/graphs/contributors"
     }
   ],
+  "homepage": "https://github.com/mimmi20/json-normalizer",
+  "support": {
+    "issues": "https://github.com/mimmi20/json-normalizer/issues",
+    "source": "https://github.com/mimmi20/json-normalizer"
+  },
   "require": {
     "php": "^7.4.3 || ^8.0.0",
     "ext-json": "*",
@@ -30,6 +34,7 @@
     "mimmi20/json-class": "^4.0.0"
   },
   "require-dev": {
+    "ergebnis/composer-normalize": "^2.18.0",
     "mimmi20/coding-standard": "^2.5.1",
     "phpstan/extension-installer": "^1.1.0",
     "phpstan/phpstan": "^1.2.0",
@@ -38,10 +43,8 @@
     "phpunit/phpunit": "^9.5.10",
     "rector/rector": "^0.12.5"
   },
-  "config": {
-    "preferred-install": "dist",
-    "sort-packages": true
-  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "Json\\Normalizer\\": "src/"
@@ -52,10 +55,8 @@
       "JsonTest\\Normalizer\\": "tests/"
     }
   },
-  "minimum-stability": "stable",
-  "prefer-stable": true,
-  "support": {
-    "issues": "https://github.com/mimmi20/json-normalizer/issues",
-    "source": "https://github.com/mimmi20/json-normalizer"
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true
   }
 }
